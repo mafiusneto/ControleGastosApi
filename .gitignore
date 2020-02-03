@@ -73,3 +73,6 @@ transaction-logs
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+.mvn/
+*mvnw
+#mvn/

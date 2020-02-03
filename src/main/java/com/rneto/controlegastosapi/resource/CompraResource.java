@@ -65,25 +65,10 @@ public class CompraResource {
 	
 	@GetMapping("/{ano}/{mes}")
 	public ResponseEntity<List<Compra>> buscarPelaData2(@PathVariable Integer ano, @PathVariable Integer mes) {
-		System.out.println("buscarPelaData2");
-		System.out.println(ano);
-		System.out.println(mes);
-		
-
 		LocalDate data1 = LocalDate.of(ano, mes, 1); 
-		LocalDate data2 = data1.with(lastDayOfMonth());		
-		System.out.println(data2.toString());		
-		// List<Compra> compras = compraRep.FindByPeriodVenc(data1.toString(), data2.toString());
-		
-		/*
-		Compra compra = new Compra();
-		compra.setDataVencimento(LocalDate.parse(data));
-		System.out.println(compra);
-		Example<Compra> example = Example.of(compra); 
-		List<Compra> compras = compraRep.findAll(example);
+		LocalDate data2 = data1.with(lastDayOfMonth());
+		List<Compra> compras = compraRep.findByDataVencimentoBetween(data1, data2);
 		return new ResponseEntity<>(compras, HttpStatus.OK);
-		*/
-		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 		
 	@PostMapping // @PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
